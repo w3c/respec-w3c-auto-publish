@@ -1,0 +1,29 @@
+name: 'ReSpec W3C Auto-Publish'
+author: 'Sid Vishnoi'
+description: 'Validate ReSpec based specs and publish to /TR/'
+inputs:
+  ECHIDNA_TOKEN:
+    description: 'Echidna token'
+    required: true
+  GH_USER:
+    description: 'GitHub user login. Used with respec-validator for API request quota limits.'
+    required: false
+  GH_TOKEN:
+    description: 'GitHub user personal token. Used with respec-validator for API request quota limits.'
+    required: false
+  URL:
+    description: 'TR Manfiest URL. Example: https://w3c.github.io/gamepad/W3CTRMANIFEST'
+    required: true
+  DECISION:
+    description: 'Decision'
+    required: true
+  CC:
+    description: "CC to email address"
+    required: true
+  PUBLISH:
+    description: 'Whether to publish to /TR/ or not'
+    required: false
+    default: false
+runs:
+  using: 'node12'
+  main: 'index.js'
