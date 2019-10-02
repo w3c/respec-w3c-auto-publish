@@ -64,8 +64,8 @@ async function publish() {
   const res = await request('https://labs.w3.org/echidna/api/request', {
     method: 'POST',
     body: JSON.stringify({
-      url: core.getInput('URL'),
-      decision: core.getInput('DECISION'),
+      url: core.getInput('ECHIDNA_MANIFEST_URL'),
+      decision: core.getInput('WG_DECISION_URL'),
       token: core.getInput('ECHIDNA_TOKEN'),
       cc: core.getInput('CC')
     })
