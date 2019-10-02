@@ -15,9 +15,6 @@ main().catch(err => {
 });
 
 async function main() {
-  // TODO
-  console.log(process.env);
-
   await install(['@actions/core']);
   core = require('@actions/core');
 
@@ -54,8 +51,7 @@ async function validate() {
 }
 
 async function publish() {
-  // PUBLISH could be 'false' or '0' or 0 or something like that... sanity check
-  const shouldPublish = JSON.parse(`${core.getInput('PUBLISH')}`);
+  const shouldPublish = process.env.GITHUB_EVENT_NAME !== 'pull_request';
   if (!shouldPublish) {
     console.log('👻 Skipped.');
     return;
