@@ -11,14 +11,14 @@ inputs:
   GH_TOKEN:
     description: 'GitHub user personal token. Used with respec-validator for API request quota limits.'
     required: false
-  URL:
+  ECHIDNA_MANIFEST_URL:
     description: 'TR Manfiest URL. Example: https://w3c.github.io/gamepad/W3CTRMANIFEST'
     required: true
-  DECISION:
-    description: 'Decision'
+  WG_DECISION_URL:
+    description: 'A link to the working group decision to use auto-publish.'
     required: true
   CC:
-    description: "CC to email address"
+    description: "Comma separated list of email address to CC to."
     required: true
   PUBLISH:
     description: 'Whether to publish to /TR/ or not'
