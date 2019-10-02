@@ -18,7 +18,7 @@ inputs:
     description: 'A link to the working group decision to use auto-publish.'
     required: true
   CC:
-    description: "Comma separated list of email address to CC to."
+    description: "Comma separated list of email addresses to CC to."
     required: true
   PUBLISH:
     description: 'Whether to publish to /TR/ or not'
