@@ -15,7 +15,7 @@ inputs:
     description: 'TR Manfiest URL. Example: https://w3c.github.io/gamepad/W3CTRMANIFEST'
     required: true
   WG_DECISION_URL:
-    description: 'A link to the working group decision to use auto-publish.'
+    description: 'A URL to the working group decision to use auto-publish (usually from a w3c mailing list).'
     required: true
   CC:
     description: "Comma separated list of email addresses to CC to."
