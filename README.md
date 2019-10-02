@@ -31,5 +31,4 @@ jobs:
           ECHIDNA_MANIFEST_URL: "https://w3c.github.io/gamepad/W3CTRMANIFEST"
           WG_DECISION_URL: "https://lists.w3.org/Archives/Public/public-webapps/2014JulSep/0627.html"
           CC: "foo@bar.com,bar@foo.com"
-          PUBLISH: ${{ github.event_name != 'pull_request' }} # publish only on merge (default: false)
 ```

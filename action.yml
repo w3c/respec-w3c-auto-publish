@@ -20,10 +20,6 @@ inputs:
   CC:
     description: "Comma separated list of email addresses to CC to."
     required: true
-  PUBLISH:
-    description: 'Whether to publish to /TR/ or not'
-    required: false
-    default: false
 runs:
   using: 'node12'
   main: 'index.js'
