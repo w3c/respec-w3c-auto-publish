@@ -17,6 +17,15 @@ main().catch(err => {
 
 async function main() {
   await install(['@actions/core']);
+  console.log(process.cwd());
+  await shell('ls -la', []);
+
+  try {
+    console.log(require.resolve('@actions/core'));
+  } catch (error) {
+    console.error(error);
+  }
+
   core = require('@actions/core');
 
   await core.group('Install dependencies', installDependencies);
