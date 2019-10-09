@@ -1,5 +1,6 @@
 const https = require('https');
 const { existsSync } = require('fs');
+const path = require('path');
 const { spawn } = require('child_process');
 
 // GitHub JavaScript Actions require we "must include any package dependencies
@@ -10,13 +11,17 @@ const { spawn } = require('child_process');
 let core; // this will become lazily imported '@actions/core'
 
 main().catch(err => {
+  console.error(err);
   core && core.setFailed(err);
   process.exit(1);
 });
 
 async function main() {
   await install(['@actions/core']);
-  core = require('@actions/core');
+  const actionsCore = require.resolve(
+    path.join(process.cwd(), 'node_modules/@actions/core')
+  );
+  core = require(actionsCore);
 
   await core.group('Install dependencies', installDependencies);
   await core.group('Validate spec', validate);
