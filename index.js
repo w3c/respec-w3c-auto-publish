@@ -10,6 +10,7 @@ const { spawn } = require('child_process');
 let core; // this will become lazily imported '@actions/core'
 
 main().catch(err => {
+  console.error(err);
   core && core.setFailed(err);
   process.exit(1);
 });
