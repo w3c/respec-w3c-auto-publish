@@ -18,7 +18,7 @@ main().catch(err => {
 async function main() {
   await install(['@actions/core']);
   console.log(process.cwd());
-  await shell('ls -la', []);
+  await shell('ls', ['-la']);
 
   try {
     console.log(require.resolve('@actions/core'));
