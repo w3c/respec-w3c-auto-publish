@@ -18,14 +18,7 @@ main().catch(err => {
 
 async function main() {
   await install(['@actions/core']);
-  try {
-    const actionsCore = joinPath(process.cwd(), 'node_modules/@actions/core');
-    console.log(require.resolve(actionsCore));
-  } catch (error) {
-    console.error(error);
-  }
-
-  core = require('@actions/core');
+  core = require('./node_modules/@actions/core');
 
   await core.group('Install dependencies', installDependencies);
   await core.group('Validate spec', validate);
