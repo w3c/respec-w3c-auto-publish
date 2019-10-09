@@ -18,7 +18,8 @@ main().catch(err => {
 async function main() {
   await install(['@actions/core']);
   console.log(process.cwd());
-  await shell('ls', ['-la']);
+  console.log(process.env);
+  await shell('ls', ['node_modules']);
 
   try {
     console.log(require.resolve('@actions/core'));
