@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest # only linux supported at present
     steps:
       - uses: actions/checkout@v1
-      - uses: sidvishnoi/respec-w3c-auto-publish # use the action
+      - uses: sidvishnoi/respec-w3c-auto-publish@master # use the action
         with:
           ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
           GH_USER: ${{ secrets.GH_USER }}     # optional
