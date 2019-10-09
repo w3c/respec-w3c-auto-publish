@@ -1,5 +1,6 @@
 const https = require('https');
 const { existsSync } = require('fs');
+const { join: joinPath } = require('path');
 const { spawn } = require('child_process');
 
 // GitHub JavaScript Actions require we "must include any package dependencies
@@ -17,12 +18,9 @@ main().catch(err => {
 
 async function main() {
   await install(['@actions/core']);
-  console.log(process.cwd());
-  console.log(process.env);
-  await shell('ls', ['node_modules']);
-
   try {
-    console.log(require.resolve('@actions/core'));
+    const actionsCore = joinPath(process.cwd(), 'node_modules/@actions/core');
+    console.log(require.resolve(actionsCore));
   } catch (error) {
     console.error(error);
   }
