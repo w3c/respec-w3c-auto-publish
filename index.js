@@ -65,14 +65,19 @@ async function publish() {
   console.log(
     '💁‍♂️ If it fails, check https://lists.w3.org/Archives/Public/public-tr-notifications/'
   );
+  const data = {
+    url: core.getInput('ECHIDNA_MANIFEST_URL'),
+    decision: core.getInput('WG_DECISION_URL'),
+    token: core.getInput('ECHIDNA_TOKEN'),
+    cc: core.getInput('CC')
+  };
+  const body = new URLSearchParams(Object.entries(data)).toString();
   const res = await request('https://labs.w3.org/echidna/api/request', {
     method: 'POST',
-    body: JSON.stringify({
-      url: core.getInput('ECHIDNA_MANIFEST_URL'),
-      decision: core.getInput('WG_DECISION_URL'),
-      token: core.getInput('ECHIDNA_TOKEN'),
-      cc: core.getInput('CC')
-    })
+    body,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
   });
   console.log(res);
 }
@@ -103,7 +108,7 @@ function request(url, options) {
       const chunks = [];
       res.on('data', data => chunks.push(data));
       res.on('end', () => {
-        let body = Buffer.concat(chunks);
+        let body = Buffer.concat(chunks).toString();
         if (res.headers['content-type'] === 'application/json') {
           body = JSON.parse(body);
         }
