@@ -39,20 +39,8 @@ async function validate() {
     throw `❌ ${file} not found!`;
   }
 
-  const ghUser = core.getInput('GH_USER');
-  const ghToken = core.getInput('GH_USER');
-
   const validator = './node_modules/.bin/respec-validator';
-
-  if (!ghUser || !ghToken) {
-    await shell(validator, [file]);
-  } else {
-    await shell(validator, [
-      `--gh-user=${ghUser}`,
-      `--gh-token=${ghToken}`,
-      file
-    ]);
-  }
+  await shell(validator, [file]);
 }
 
 async function publish() {

@@ -5,12 +5,6 @@ inputs:
   ECHIDNA_TOKEN:
     description: 'Echidna token'
     required: true
-  GH_USER:
-    description: 'GitHub user login. Used with respec-validator for API request quota limits.'
-    required: false
-  GH_TOKEN:
-    description: 'GitHub user personal token. Used with respec-validator for API request quota limits.'
-    required: false
   ECHIDNA_MANIFEST_URL:
     description: 'TR Manfiest URL. Example: https://w3c.github.io/gamepad/W3CTRMANIFEST'
     required: true
