@@ -1,28 +1,22 @@
 const https = require('https');
-const { existsSync } = require('fs');
 const path = require('path');
+const { existsSync } = require('fs');
 const { spawn } = require('child_process');
+const core = require('@actions/core');
 
 // GitHub JavaScript Actions require we "must include any package dependencies
 // required to run the JavaScript code" - import node_modules in version control
 // or other weird things.
 // (https://help.github.com/en/articles/creating-a-javascript-action#commit-and-push-your-action-to-github).
 // To overcome that, we do `npm install` dynamically from within this script 🎉.
-let core; // this will become lazily imported '@actions/core'
 
 main().catch(err => {
   console.error(err);
-  core && core.setFailed(err);
+  core.setFailed(err);
   process.exit(1);
 });
 
 async function main() {
-  await install(['@actions/core']);
-  const actionsCore = require.resolve(
-    path.join(process.cwd(), 'node_modules/@actions/core')
-  );
-  core = require(actionsCore);
-
   await core.group('Install dependencies', installDependencies);
   await core.group('Validate spec', validate);
   await core.group('Publish to /TR/', publish);
@@ -87,7 +81,7 @@ function shell(command, args = [], options = {}) {
 }
 
 async function install(dependencies) {
-  await shell('npm', ['install', '--quiet', ...dependencies]);
+  await shell('npm', ['install', '--silent', ...dependencies]);
 }
 
 function request(url, options) {

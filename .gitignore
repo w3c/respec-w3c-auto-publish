@@ -1,0 +1,6 @@
+.vscode
+node_modules/*
+!node_modules/@actions
+node_modules/@actions/**/README.md
+node_modules/@actions/**/*.map
+node_modules/@actions/**/*.d.ts
