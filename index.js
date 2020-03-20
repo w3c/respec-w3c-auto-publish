@@ -4,6 +4,9 @@ const { existsSync } = require('fs');
 const { spawn } = require('child_process');
 const core = require('@actions/core');
 
+const ECHIDNA_SUCCESS_STATUS = 'success';
+const ECHIDNA_FAILURE_STATUS = 'failure';
+
 (async function main() {
   await run('Install dependencies', installDependencies);
   await run('Validate spec', validate);
@@ -56,14 +59,70 @@ async function publish() {
   core.setSecret(data.token);
 
   const body = new URLSearchParams(Object.entries(data)).toString();
-  const res = await request('https://labs.w3.org/echidna/api/request', {
+  const id = await request('https://labs.w3.org/echidna/api/request', {
     method: 'POST',
     body,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   });
-  console.log(res);
+
+  const result = await getPublishStatus(id);
+  console.log(result);
+  switch (result.status) {
+    case ECHIDNA_SUCCESS_STATUS:
+      return core.info(`Published at: ${result.url}`);
+    case ECHIDNA_FAILURE_STATUS:
+      throw new Error('Echidna publish has failed.');
+    default:
+      core.warning('Echidna publish job is pending.');
+  }
+}
+
+async function getPublishStatus(id) {
+  let url = new URL('https://labs.w3.org/echidna/api/status');
+  url.searchParams.set('id', id);
+  url = url.href;
+
+  const isJSON = arg => typeof arg === 'string' && arg.startsWith('{');
+
+  // wait this many seconds before each job status check attempt;
+  // ... with a maximum of 18 seconds total wait.
+  let RETRY_DURATIONS = [2, 3, 2, 4, 2, 5];
+
+  const state = { id, status: 'pending', url, response: undefined };
+  do {
+    const wait = RETRY_DURATIONS.shift();
+    console.log(`Wait ${wait}ms for job to finish...`);
+    await new Promise(res => setTimeout(res, wait * 1000));
+
+    let response;
+    try {
+      response = await request(url, { method: 'GET' });
+      if (typeof response === 'string' && !response.startsWith('{')) {
+        throw response;
+      }
+      response = isJSON(response) ? JSON.parse(response) : response;
+
+      state.status = response.results.status;
+      if (state.status !== ECHIDNA_SUCCESS_STATUS) {
+        throw state.status;
+      }
+
+      return {
+        id,
+        status: state.status,
+        url: response.results.metadata.thisVersion
+      };
+    } catch {
+      state.response = response;
+    }
+  } while (
+    state.status !== ECHIDNA_SUCCESS_STATUS &&
+    state.status !== ECHIDNA_FAILURE_STATUS &&
+    RETRY_DURATIONS.length > 0
+  );
+  return state;
 }
 
 // Utils
