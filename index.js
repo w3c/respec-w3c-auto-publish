@@ -33,7 +33,7 @@ async function validate() {
   const file = core.getInput('INPUT_FILE');
 
   if (!existsSync(file)) {
-    throw new Error(`INPUT_FILE: "${file}" not found!`);
+    throw new Error(`📛 INPUT_FILE: "${file}" not found!`);
   }
 
   const validator = './node_modules/.bin/respec-validator';
@@ -71,11 +71,11 @@ async function publish() {
   console.log(result);
   switch (result.status) {
     case ECHIDNA_SUCCESS_STATUS:
-      return core.info(`Published at: ${result.url}`);
+      return core.info(`🎉 Published at: ${result.url}`);
     case ECHIDNA_FAILURE_STATUS:
-      throw new Error('Echidna publish has failed.');
+      throw new Error('💥 Echidna publish has failed.');
     default:
-      core.warning('Echidna publish job is pending.');
+      core.warning('🚧 Echidna publish job is pending.');
   }
 }
 
@@ -93,7 +93,7 @@ async function getPublishStatus(id) {
   const state = { id, status: 'pending', url, response: undefined };
   do {
     const wait = RETRY_DURATIONS.shift();
-    console.log(`Wait ${wait}ms for job to finish...`);
+    console.log(`⏱️ Wait ${wait}ms for job to finish...`);
     await new Promise(res => setTimeout(res, wait * 1000));
 
     let response;
@@ -135,7 +135,7 @@ function shell(command, args = [], options = {}) {
       if (code === 0) {
         resolve();
       } else {
-        reject(new Error(`The process exited with status code: ${code}`));
+        reject(new Error(`💥 The process exited with status code: ${code}`));
       }
     });
   });
@@ -147,6 +147,7 @@ async function install(dependencies) {
 
 function request(url, options) {
   return new Promise((resolve, reject) => {
+    console.log(`📡 Request: ${url}`);
     const req = https.request(url, options, res => {
       const chunks = [];
       res.on('data', data => chunks.push(data));
