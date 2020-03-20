@@ -1,6 +1,9 @@
 name: 'ReSpec W3C Auto-Publish'
 author: 'Sid Vishnoi'
 description: 'Validate ReSpec based specs and publish to /TR/'
+branding:
+  icon: 'archive'
+  color: 'blue'
 inputs:
   ECHIDNA_TOKEN:
     description: 'Echidna token'
