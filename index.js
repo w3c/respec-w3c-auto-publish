@@ -53,6 +53,8 @@ async function publish() {
     token: core.getInput('ECHIDNA_TOKEN', { required: true }),
     cc: core.getInput('CC')
   };
+  core.setSecret(data.token);
+
   const body = new URLSearchParams(Object.entries(data)).toString();
   const res = await request('https://labs.w3.org/echidna/api/request', {
     method: 'POST',
