@@ -48,9 +48,9 @@ async function publish() {
     '💁‍♂️ If it fails, check https://lists.w3.org/Archives/Public/public-tr-notifications/'
   );
   const data = {
-    url: core.getInput('ECHIDNA_MANIFEST_URL'),
-    decision: core.getInput('WG_DECISION_URL'),
-    token: core.getInput('ECHIDNA_TOKEN'),
+    url: core.getInput('ECHIDNA_MANIFEST_URL', { required: true }),
+    decision: core.getInput('WG_DECISION_URL', { required: true }),
+    token: core.getInput('ECHIDNA_TOKEN', { required: true }),
     cc: core.getInput('CC')
   };
   const body = new URLSearchParams(Object.entries(data)).toString();
