@@ -4,16 +4,22 @@ const { existsSync } = require('fs');
 const { spawn } = require('child_process');
 const core = require('@actions/core');
 
-main().catch(err => {
-  console.error(err);
-  core.setFailed(err);
-  process.exit(1);
-});
+(async function main() {
+  await run('Install dependencies', installDependencies);
+  await run('Validate spec', validate);
+  await run('Publish to /TR/', publish);
+})();
 
-async function main() {
-  await core.group('Install dependencies', installDependencies);
-  await core.group('Validate spec', validate);
-  await core.group('Publish to /TR/', publish);
+async function run(name, fn) {
+  try {
+    core.startGroup(name);
+    await fn();
+    core.endGroup();
+  } catch (error) {
+    core.endGroup();
+    core.setFailed(error.message);
+    process.exit(1);
+  }
 }
 
 async function installDependencies() {
@@ -24,7 +30,7 @@ async function validate() {
   const file = core.getInput('INPUT_FILE');
 
   if (!existsSync(file)) {
-    throw `❌ ${file} not found!`;
+    throw new Error(`INPUT_FILE: "${file}" not found!`);
   }
 
   const validator = './node_modules/.bin/respec-validator';
@@ -68,7 +74,7 @@ function shell(command, args = [], options = {}) {
       if (code === 0) {
         resolve();
       } else {
-        reject(`❌ The process exited with status code: ${code}`);
+        reject(new Error(`The process exited with status code: ${code}`));
       }
     });
   });
