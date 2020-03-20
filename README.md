@@ -1,6 +1,6 @@
 # ReSpec W3C Auto-Publish (GitHub Action)
 
-This action lets you validate a ReSpec based spec and publish them to /TR/
+GitHub action to [validate](https://github.com/marcoscaceres/respec-validator) a [ReSpec](https://github.com/w3c/respec/) document and publish it using [Echidna](https://github.com/w3c/echidna/).
 
 ## Inputs
 
