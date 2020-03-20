@@ -4,12 +4,6 @@ const { existsSync } = require('fs');
 const { spawn } = require('child_process');
 const core = require('@actions/core');
 
-// GitHub JavaScript Actions require we "must include any package dependencies
-// required to run the JavaScript code" - import node_modules in version control
-// or other weird things.
-// (https://help.github.com/en/articles/creating-a-javascript-action#commit-and-push-your-action-to-github).
-// To overcome that, we do `npm install` dynamically from within this script 🎉.
-
 main().catch(err => {
   console.error(err);
   core.setFailed(err);
