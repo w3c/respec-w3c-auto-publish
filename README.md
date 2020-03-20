@@ -1,6 +1,8 @@
 # ReSpec W3C Auto-Publish (GitHub Action)
 
-GitHub action to [validate](https://github.com/marcoscaceres/respec-validator) a [ReSpec](https://github.com/w3c/respec/) document and publish it using [Echidna](https://github.com/w3c/echidna/).
+GitHub action to [validate](https://github.com/marcoscaceres/respec-validator) a [ReSpec](https://github.com/w3c/respec/) document and publish it as a TR using [Echidna](https://github.com/w3c/echidna/).
+
+The document is published only when a PR is merged. Validation is done when a PR is created/updated and merged.
 
 ## Inputs
 
