@@ -14,6 +14,10 @@ inputs:
   CC:
     description: "Comma separated list of email addresses to CC to."
     required: true
+  INPUT_FILE:
+    description: 'Input HTML file path, relative to repository root.'
+    required: false
+    default: 'index.html'
 runs:
   using: 'node12'
   main: 'index.js'

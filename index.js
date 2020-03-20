@@ -27,7 +27,7 @@ async function installDependencies() {
 }
 
 async function validate() {
-  const file = 'index.html';
+  const file = core.getInput('INPUT_FILE');
 
   if (!existsSync(file)) {
     throw `❌ ${file} not found!`;
