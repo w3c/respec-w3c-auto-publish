@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest # only linux supported at present
     steps:
       - uses: actions/checkout@v1
-      - uses: sidvishnoi/respec-w3c-auto-publish@master # use the action
+      - uses: w3c/respec-w3c-auto-publish@master # use the action
         with:
           ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
           ECHIDNA_MANIFEST_URL: "https://w3c.github.io/gamepad/W3CTRMANIFEST"
