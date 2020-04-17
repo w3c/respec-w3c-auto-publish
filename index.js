@@ -93,7 +93,7 @@ async function getPublishStatus(id) {
   const state = { id, status: 'pending', url, response: undefined };
   do {
     const wait = RETRY_DURATIONS.shift();
-    console.log(`⏱️ Wait ${wait}ms for job to finish...`);
+    console.log(`⏱️ Wait ${wait}s for job to finish...`);
     await new Promise(res => setTimeout(res, wait * 1000));
 
     let response;
