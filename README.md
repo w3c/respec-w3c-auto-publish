@@ -5,6 +5,9 @@ GitHub action to [validate](https://github.com/marcoscaceres/respec-validator) a
 The document is published only when a PR is merged. Validation is done when a PR is created/updated and merged.
 
 ## Inputs
+Working Group Chairs and W3C Team members can [request a token](https://www.w3.org/Web/publications/register) directly from the W3C. This can then be saved as `ECHIDNA_TOKEN` in your repository settings under "Secrets". 
+
+![secrets sections, in GitHub settings](https://user-images.githubusercontent.com/870154/81380287-f9579f80-914d-11ea-84bc-5707bff75dba.png)
 
 Please see [action.yml](action.yml)
 
