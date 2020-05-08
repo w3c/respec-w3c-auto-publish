@@ -53,3 +53,14 @@ jobs:
           WG_DECISION_URL: "https://lists.w3.org/Archives/Public/public-webapps/2014JulSep/0627.html"
           CC: "foo@bar.com,bar@foo.com"
 ```
+
+#### `WG_DECISION_URL`
+
+Here are some of the possible values of `WG_DECISION_URL` for various working groups:
+
+- WebApps WG: https://lists.w3.org/Archives/Public/public-webapps/2014JulSep/0627.html
+- Media Capture WG: https://lists.w3.org/Archives/Public/public-media-capture/2015Dec/0031.html
+- Second Screen WG: https://lists.w3.org/Archives/Public/public-secondscreen/2015Jun/0096.html
+- Web RTC: https://lists.w3.org/Archives/Public/public-webrtc/2016Mar/0031.html
+- Aria: https://lists.w3.org/Archives/Public/public-html-admin/2015May/0021.html
+- Device APIs: https://lists.w3.org/Archives/Public/public-device-apis/2015Oct/att-0037/minutes-2015-10-15.html#item05
