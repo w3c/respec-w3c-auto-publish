@@ -28,8 +28,7 @@ index.html?specStatus=WD&shortName=your-spec-shortname respec
 
 ### action.yml
 
-Place this file in ".github/workflows/action.yml" and change things as appropriate for your spec.
-
+Place this file in ".github/workflows/action.yml" (or some other filename if you'd like) and change things as appropriate for your spec.
 
 ``` yaml
 name: Node CI
