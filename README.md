@@ -17,8 +17,8 @@ You need two things:
  1. an "ECHIDNA" [manifest file](https://github.com/w3c/echidna/wiki/Preparing-your-document#manifest-file)
  2. an action.yml file
 
-### ECHIDNA file
-The ECHINA file needs live at the root of your repository and make sure it's accessible via GitHub pages! 
+### ECHIDNA manifest file
+The [ECHINA manifest file](https://github.com/w3c/echidna/wiki/Preparing-your-document#manifest-file) needs live at the root of your repository and make sure it's accessible via GitHub pages! 
 
 Just change `your-spec-shortname` to whatever your spec's short name is. 
 
