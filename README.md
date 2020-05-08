@@ -13,7 +13,23 @@ Please see [action.yml](action.yml)
 
 ## Example Usage
 
-Place this file in ".github/workflows/action.yml". 
+You need two things: 
+ 1. an "ECHIDA" file
+ 2. an action.yml file
+
+### ECHIDNA file
+The ECHINA file needs live at the root of your repository and make sure it's accessible via GitHub pages! 
+
+Just change `your-spec-shortname` to whatever your spec's short name is. 
+
+```
+index.html?specStatus=WD&shortName=your-spec-shortname respec
+```
+
+### action.yml
+
+Place this file in ".github/workflows/action.yml" and change things as appropriate for your spec.
+
 
 ``` yaml
 name: Node CI
