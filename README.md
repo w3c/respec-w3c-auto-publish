@@ -14,7 +14,7 @@ Please see [action.yml](action.yml)
 ## Example Usage
 
 You need two things: 
- 1. an "ECHIDNA" manifest file
+ 1. an "ECHIDNA" [manifest file](https://github.com/w3c/echidna/wiki/Preparing-your-document#manifest-file)
  2. an action.yml file
 
 ### ECHIDNA file
