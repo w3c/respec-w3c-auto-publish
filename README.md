@@ -14,7 +14,7 @@ Please see [action.yml](action.yml)
 ## Example Usage
 
 You need two things: 
- 1. an "ECHIDA" file
+ 1. an "ECHIDNA" file
  2. an action.yml file
 
 ### ECHIDNA file
