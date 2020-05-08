@@ -13,6 +13,8 @@ Please see [action.yml](action.yml)
 
 ## Example Usage
 
+Place this file in ".github/workflows/action.yml". 
+
 ``` yaml
 name: Node CI
 
@@ -28,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest # only linux supported at present
     steps:
       - uses: actions/checkout@v1
-      - uses: w3c/respec-w3c-auto-publish@master # use the action
+      - uses: w3c/respec-w3c-auto-publish@v1 # use the action
         with:
           ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
           ECHIDNA_MANIFEST_URL: "https://w3c.github.io/gamepad/W3CTRMANIFEST"
