@@ -42,7 +42,7 @@ jobs:
     name: Validate and Publish
     runs-on: ubuntu-latest # only linux supported at present
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: w3c/respec-w3c-auto-publish@v1 # use the action
         with:
           ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
