@@ -7,6 +7,8 @@ const ECHIDNA_SUCCESS_STATUS = 'success';
 const ECHIDNA_FAILURE_STATUS = 'failure';
 
 (async function main() {
+  process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = '1';
+  process.env.PUPPETEER_EXECUTABLE_PATH = '/usr/bin/google-chrome';
   await run('Install dependencies', installDependencies);
   await run('Validate spec', validate);
   await run('Publish to /TR/', publish);
