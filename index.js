@@ -1,5 +1,4 @@
 const https = require('https');
-const path = require('path');
 const { existsSync } = require('fs');
 const { spawn } = require('child_process');
 const core = require('@actions/core');
