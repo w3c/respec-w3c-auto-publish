@@ -21,6 +21,14 @@ inputs:
     description: 'Input HTML file path, relative to repository root.'
     required: false
     default: 'index.html'
+  CHECK_LINKS:
+    description: 'Validate links and cross references'
+    required: false
+    default: true
+  VALIDATE_MARKUP:
+    description: 'Validate HTML markup'
+    required: false
+    default: true
 runs:
   using: 'node12'
   main: 'index.js'
