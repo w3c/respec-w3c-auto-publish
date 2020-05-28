@@ -50,6 +50,8 @@ jobs:
           # Please use the URL that's appropriate for your working group!
           WG_DECISION_URL: "https://lists.w3.org/Archives/Public/public-webapps/2014JulSep/0627.html"
           CC: "foo@bar.com,bar@foo.com"
+          CHECK_LINKS: true # Validate links and cross references; default: true
+          VALIDATE_MARKUP: true # Validate HTML markup; default: true
 ```
 
 #### `WG_DECISION_URL`

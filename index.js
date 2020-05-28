@@ -38,7 +38,12 @@ async function validate() {
   }
 
   const validator = './node_modules/.bin/respec-validator';
-  await shell(validator, [file]);
+  const args = [file];
+  const validateMarkup = JSON.parse(core.getInput('VALIDATE_MARKUP'));
+  if (!validateMarkup) args.push('--no-validator');
+  const checkLinks = JSON.parse(core.getInput('CHECK_LINKS'));
+  if (!checkLinks) args.push('--no-links');
+  await shell(validator, args);
 }
 
 async function publish() {
