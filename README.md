@@ -34,7 +34,7 @@ name: Node CI
 on:
   push:
     branches:
-      - gh-pages
+      - gh-pages # change to your default branch
   pull_request: {}
 
 jobs:
