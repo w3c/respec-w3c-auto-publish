@@ -2,6 +2,7 @@ const https = require('https');
 const { existsSync } = require('fs');
 const { spawn } = require('child_process');
 const core = require('@actions/core');
+const { issueCommand } = require('@actions/core/lib/command');
 
 const ECHIDNA_SUCCESS_STATUS = 'success';
 const ECHIDNA_FAILURE_STATUS = 'failure';
@@ -62,6 +63,7 @@ async function publish() {
     token: core.getInput('ECHIDNA_TOKEN', { required: true }),
     cc: core.getInput('CC'),
   };
+  const file = core.getInput('INPUT_FILE');
   core.setSecret(data.token);
 
   const body = new URLSearchParams(Object.entries(data)).toString();
@@ -78,8 +80,13 @@ async function publish() {
   switch (result.status) {
     case ECHIDNA_SUCCESS_STATUS:
       return core.info(`🎉 Published at: ${result.url}`);
-    case ECHIDNA_FAILURE_STATUS:
+    case ECHIDNA_FAILURE_STATUS: {
+      for (const { message, id, name } of getSpecberusErrors(result.response)) {
+        const msg = `echidna/specberus:\n\t${name}/${id}:\n\t${message}`;
+        issueCommand('error', { file, line: '1' }, msg);
+      }
       throw new Error('💥 Echidna publish has failed.');
+    }
     default:
       core.warning('🚧 Echidna publish job is pending.');
   }
@@ -129,6 +136,23 @@ async function getPublishStatus(id) {
     RETRY_DURATIONS.length > 0
   );
   return state;
+}
+
+function getSpecberusErrors(response) {
+  let errors = [];
+  let profile;
+  try {
+    profile = response.results.metadata.profile;
+    errors = response.results.jobs.specberus.errors || [];
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+
+  const specberus = require('./specberus/messages.js');
+  return errors.map(({ type, key, extra }) =>
+    specberus.getMessage(profile, type, key, extra),
+  );
 }
 
 // Utils
