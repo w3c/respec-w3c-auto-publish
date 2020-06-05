@@ -54,13 +54,13 @@ async function publish() {
   }
 
   console.log(
-    '💁‍♂️ If it fails, check https://lists.w3.org/Archives/Public/public-tr-notifications/'
+    '💁‍♂️ If it fails, check https://lists.w3.org/Archives/Public/public-tr-notifications/',
   );
   const data = {
     url: core.getInput('ECHIDNA_MANIFEST_URL', { required: true }),
     decision: core.getInput('WG_DECISION_URL', { required: true }),
     token: core.getInput('ECHIDNA_TOKEN', { required: true }),
-    cc: core.getInput('CC')
+    cc: core.getInput('CC'),
   };
   core.setSecret(data.token);
 
@@ -69,8 +69,8 @@ async function publish() {
     method: 'POST',
     body,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
   });
 
   const result = await getPublishStatus(id);
@@ -118,7 +118,7 @@ async function getPublishStatus(id) {
       return {
         id,
         status: state.status,
-        url: response.results.metadata.thisVersion
+        url: response.results.metadata.thisVersion,
       };
     } catch {
       state.response = response;
