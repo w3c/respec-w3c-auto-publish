@@ -1,3 +1,7 @@
+# ⚠ Deprecated: Use [spec-prod](https://github.com/w3c/spec-prod) instead.
+
+---
+
 # ReSpec W3C Auto-Publish (GitHub Action)
 
 GitHub action to [validate](https://github.com/marcoscaceres/respec-validator) a [ReSpec](https://github.com/w3c/respec/) document and publish it as a TR using [Echidna](https://github.com/w3c/echidna/).
