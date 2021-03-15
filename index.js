@@ -8,6 +8,10 @@ const ECHIDNA_SUCCESS_STATUS = 'success';
 const ECHIDNA_FAILURE_STATUS = 'failure';
 
 (async function main() {
+  core.warning(
+    `The action "respec-w3c-auto-publish" has been deprecated in favor of the "spec-prod" action.` +
+      ` Please use spec-prod: https://github.com/w3c/spec-prod`,
+  );
   process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = '1';
   process.env.PUPPETEER_EXECUTABLE_PATH = '/usr/bin/google-chrome';
   await run('Install dependencies', installDependencies);
